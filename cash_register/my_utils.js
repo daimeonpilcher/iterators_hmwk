@@ -28,7 +28,7 @@
         var len = arr.length;
         var pv = pv || 0;
         for(var i=0; i<len; i++){
-            cb(arr[i], i, arr);
+            pv = cb(pv, arr[i], i, arr);
         } return pv;
     }
 
@@ -40,10 +40,15 @@
     
     // myUtils.toDollarAmount;
     myUtils.toDollarAmount = function toDollarAmount(num){
-        var cents = num % 100;
+        num = parseFloat(Math.round(num*100)/100).toFixed(2);
+        return num
 
     }
 
     // myUtils.toCurrencyString;
+    myUtils.toCurrencyString = function toCurrencyString(num, currency){
+        num = toDollarAmount(num);
+        return currency + num;
+    }
     
 }.call(this))
